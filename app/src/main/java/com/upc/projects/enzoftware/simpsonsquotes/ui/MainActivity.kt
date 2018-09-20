@@ -20,11 +20,11 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val tag = "SIMPSONS QUOTE"
-    var quotes : ArrayList<Quote> = ArrayList()
-    lateinit var quoteAdapter: QuoteAdapter
-    lateinit var quoteRecyclerView: RecyclerView
-    lateinit var quoteLayoutManager: RecyclerView.LayoutManager
+    private val tag = "SIMPSONS QUOTE"
+    private var quotes : ArrayList<Quote> = ArrayList()
+    private lateinit var quoteAdapter: QuoteAdapter
+    private lateinit var quoteRecyclerView: RecyclerView
+    private lateinit var quoteLayoutManager: RecyclerView.LayoutManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity() {
                 { response -> responseHandler(response) },
                 { anError -> errorHandler(anError) }
         )
-
-
-        //setSupportActionBar(toolbar)
-
     }
 
 

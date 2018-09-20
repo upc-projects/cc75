@@ -1,12 +1,14 @@
 package com.upc.projects.enzoftware.simpsonsquotes.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.upc.projects.enzoftware.simpsonsquotes.R
 import com.upc.projects.enzoftware.simpsonsquotes.model.Quote
+import com.upc.projects.enzoftware.simpsonsquotes.ui.QuoteDetailActivity
 import kotlinx.android.synthetic.main.item_quote.view.*
 
 class QuoteAdapter(val context: Context, var quotes: ArrayList<Quote>): RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>() {
@@ -24,6 +26,7 @@ class QuoteAdapter(val context: Context, var quotes: ArrayList<Quote>): Recycler
     class QuoteViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val characterImage = view.characterImage!!
         val quoteText = view.quoteTextView!!
+        val layoutQuote = view.layout_quote!!
 
         fun updateFrom(quote: Quote){
             quoteText.text = quote.quote
@@ -31,7 +34,13 @@ class QuoteAdapter(val context: Context, var quotes: ArrayList<Quote>): Recycler
             characterImage.setErrorImageResId(R.mipmap.ic_launcher)
             characterImage.setImageUrl(quote.image)
 
-            // TODO : ON CLICK OPEN DETAIL
+            layoutQuote.setOnClickListener {
+                val context = it.context
+                context.startActivity(Intent(it.context, QuoteDetailActivity::class.java)
+                        .putExtras(quote.toBundle()))
+
+            }
+
 
         }
     }
