@@ -4,7 +4,4 @@ class Quote( val quote : String? = "",
              val character : String? = "",
              val image : String? = "",
              val characterDirection: String? = ""){
-
-
-
 }

@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import com.androidnetworking.error.ANError
 import com.upc.projects.enzoftware.simpsonsquotes.R
 import com.upc.projects.enzoftware.simpsonsquotes.model.Quote
+import com.upc.projects.enzoftware.simpsonsquotes.network.QuoteApi
 import com.upc.projects.enzoftware.simpsonsquotes.network.QuoteResponse
 import com.upc.projects.enzoftware.simpsonsquotes.ui.adapter.QuoteAdapter
 
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     val tag = "SIMPSONS QUOTE"
-    lateinit var quotes : ArrayList<Quote>
+    var quotes : ArrayList<Quote> = ArrayList()
     lateinit var quoteAdapter: QuoteAdapter
     lateinit var quoteRecyclerView: RecyclerView
     lateinit var quoteLayoutManager: RecyclerView.LayoutManager
@@ -28,46 +29,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        quoteRecyclerView = this.recyclerViewQuotes
+        setContentView(R.layout.activity_main)
+        quoteRecyclerView = findViewById(R.id.recyclerView)
         quoteAdapter = QuoteAdapter(this, quotes)
         quoteLayoutManager = GridLayoutManager(this,1)
         quoteRecyclerView.adapter = quoteAdapter
         quoteRecyclerView.layoutManager = quoteLayoutManager
 
+        QuoteApi.requestArrayQuotes(
+                { response -> responseHandler(response) },
+                { anError -> errorHandler(anError) }
+        )
 
 
-
-
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        //setSupportActionBar(toolbar)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
+    fun responseHandler(listQuotes: List<Quote>?){
 
-    fun responseHandler(quoteResponse: QuoteResponse?){
-        if ("error".equals(quoteResponse!!.status)){
-            return
-        }
-        this.quotes = quoteResponse.quotes!!
+        this.quotes = ArrayList(listQuotes)
         quoteAdapter.quotes = this.quotes
         quoteAdapter.notifyDataSetChanged()
 
     }
 
-    fun errorHandler(anError: ANError){
-        Log.d(tag,anError.message)
+    fun errorHandler(anError: ANError?){
+        Log.d(tag,anError!!.message)
     }
 
 }
