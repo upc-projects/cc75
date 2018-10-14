@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AboutPhotoActivity"
+    tools:showIn="@layout/activity_about_photo">
+
+    <com.androidnetworking.widget.ANImageView
+        android:id="@+id/detailphoto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/detaildate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_text"
+        app:layout_constraintTop_toBottomOf="@id/detailphoto" />
+
+    <TextView
+        android:id="@+id/detailsol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_text"
+        app:layout_constraintTop_toBottomOf="@id/detaildate" />
+
+    <TextView
+        android:id="@+id/detailid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_text"
+        app:layout_constraintTop_toBottomOf="@id/detailsol" />
+
+</android.support.constraint.ConstraintLayout>
