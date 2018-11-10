@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".viewcontrollers.activities.SourceActivity"
+    tools:showIn="@layout/activity_source">
+
+    <com.androidnetworking.widget.ANImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/big_image_side"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher"/>
+    <ImageButton
+        android:id="@+id/bookmarkImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_bookmark_border_black_24dp"/>
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/bookmarkImageButton"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:text="@string/mock_text"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView"
+        android:text="@string/mock_text"/>
+
+</android.support.constraint.ConstraintLayout>
